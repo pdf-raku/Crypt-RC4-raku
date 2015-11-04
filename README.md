@@ -1,7 +1,7 @@
 perl6-Crypt-RC4
 ===============
 
-## head1 SYNOPSIS
+## SYNOPSIS
 ``
 # Functional Style
   use Crypt::RC4;
@@ -24,7 +24,7 @@ perl6-Crypt-RC4
       say $ref3.RC4($_);
   }
 
-## head1 DESCRIPTION
+## DESCRIPTION
 
 A simple implementation of the RC4 algorithm, developed by RSA Security, Inc. Here is the description
 from RSA's website:
@@ -40,12 +40,13 @@ Based substantially on the "RC4 in 3 lines of perl" found at http://www.cyphersp
 
 A major bug in v1.0 was fixed by David Hook (dgh@wumpus.com.au).  Thanks, David.
 
-## head1 AUTHOR
+## AUTHOR
 
 Kurt Kincaid (sifukurt@yahoo.com)
 Ronald Rivest for RSA Security, Inc.
+Ported from Perl 5 to 6 by David Warring 2015.
 
-## head1 BUGS
+## BUGS
 
 Disclaimer: Strictly speaking, this module uses the "alleged" RC4
 algorithm. The Algorithm known as "RC4" is a trademark of RSA Security
@@ -65,12 +66,12 @@ to sixteen machine operations" is good for nothing but a good laugh.
 If encryption and decryption are a bottleneck for you, please re-write
 this module to use native code wherever practical.
 
-## head1 LICENSE
+## LICENSE
 
 This is free software and may be modified and/or
 redistributed under the same terms as Perl itself.
 
-## head1 SEE ALSO
+## SEE ALSO
 
 L<perl>, L<http://www.cypherspace.org>, L<http://www.rsasecurity.com>, 
 L<http://www.achtung.com/crypto/rc4.html>, 
