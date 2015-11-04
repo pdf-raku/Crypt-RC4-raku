@@ -2,7 +2,8 @@ perl6-Crypt-RC4
 ===============
 
 ## SYNOPSIS
-``
+
+```
 # Functional Style
   use Crypt::RC4;
   my $encrypted = RC4( $passphrase, $plaintext );
@@ -23,6 +24,7 @@ perl6-Crypt-RC4
       chomp;
       say $ref3.RC4($_);
   }
+```
 
 ## DESCRIPTION
 
@@ -42,9 +44,9 @@ A major bug in v1.0 was fixed by David Hook (dgh@wumpus.com.au).  Thanks, David.
 
 ## AUTHOR
 
-Kurt Kincaid (sifukurt@yahoo.com)
-Ronald Rivest for RSA Security, Inc.
-Ported from Perl 5 to 6 by David Warring 2015.
+- Kurt Kincaid (sifukurt@yahoo.com)
+- Ronald Rivest for RSA Security, Inc.
+- Ported from Perl 5 to 6 by David Warring 2015.
 
 ## BUGS
 
