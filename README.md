@@ -75,7 +75,8 @@ redistributed under the same terms as Perl itself.
 
 ## SEE ALSO
 
-L<perl>, L<http://www.cypherspace.org>, L<http://www.rsasecurity.com>, 
-L<http://www.achtung.com/crypto/rc4.html>, 
-L<http://www.columbia.edu/~ariel/ssleay/rrc4.html>
+- http://www.cypherspace.org
+- http://www.rsasecurity.com
+- http://www.achtung.com/crypto/rc4.html 
+- http://www.columbia.edu/~ariel/ssleay/rrc4.html
 
