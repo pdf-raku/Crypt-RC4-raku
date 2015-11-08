@@ -1,13 +1,23 @@
 use Test;
 use Crypt::RC4;
 # port of test.pl from the original Crypt-RC4 Perl 5 distribution
-my Blob $passphrase = Blob.new(0x01,0x23,0x45,0x67,0x89,0xab,0xcd,0xef);
-my Blob $plaintext = Blob.new(0x01,0x23,0x45,0x67,0x89,0xab,0xcd,0xef);
+my uint8 @passphrase = 0x01,0x23,0x45,0x67,0x89,0xab,0xcd,0xef;
+my uint8 @plaintext  = 0x01,0x23,0x45,0x67,0x89,0xab,0xcd,0xef;
+my uint8 @encrypted = RC4( @passphrase, @plaintext );
+my uint8 @decrypted = RC4( @passphrase, @encrypted );
+my uint8 @expected-enc = 0x75,0xb7,0x87,0x80,0x99,0xe0,0xc5,0x96;
+
+is-deeply @encrypted, @expected-enc, 'array encryption';
+is-deeply @decrypted, @plaintext, 'array decryption';
+
+my Blob $passphrase = Blob.new: @passphrase;
+my Blob $plaintext = Blob.new: @plaintext;
 my Blob $encrypted = RC4( $passphrase, $plaintext );
 my Blob $decrypted = RC4( $passphrase, $encrypted );
+my Blob $expected-enc = Blob.new: @expected-enc;
 
-is-deeply $encrypted, Blob.new(0x75,0xb7,0x87,0x80,0x99,0xe0,0xc5,0x96), 'encryption';
-is-deeply $decrypted, $plaintext, 'decryption';
+is-deeply $encrypted, $expected-enc, 'blob encryption';
+is-deeply $decrypted, $plaintext, 'blob decryption';
 
 $passphrase = Blob.new(0x01,0x23,0x45,0x67,0x89,0xab,0xcd,0xef);
 $plaintext = Blob.new(0x68,0x65,0x20,0x74,0x69,0x6d,0x65,0x20);

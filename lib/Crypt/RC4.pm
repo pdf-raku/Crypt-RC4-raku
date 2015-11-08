@@ -5,6 +5,8 @@
 #       Author:         Kurt Kincaid (sifukurt@yahoo.com)
 #       Copyright (c) 2001, Kurt Kincaid
 #           All Rights Reserved.
+#       Perl 6 Port:    08-Nov-2015 05:24:25 PM by
+#                       david.warring@gmail.com
 #
 #       This is free software and may be modified and/or
 #       redistributed under the same terms as Perl itself.
@@ -16,26 +18,31 @@ class Crypt::RC4 {
     has Int $!x;
     has Int $!y;
 
-    submethod BUILD(Blob :$key!) is default {
+    multi submethod BUILD(array[uint8] :$key!) is default {
+        self.BUILD( :key(Blob.new: $key) )
+    }
+    multi submethod BUILD(Blob :$key!) is default {
         @!state = setup( $key );
         $!x = 0;
         $!y = 0;
     }
 
-    method RC4(Blob $message --> Blob) is default {
-	my uint8 @buf = $message.list;
-
+    multi method RC4(@buf is copy --> Array) {
         for @buf {
 	    $!x = 0 if ++$!x > 255;
 	    $!y -= 256 if ($!y += @!state[$!x]) > 255;
 	    @!state[$!x, $!y] = @!state[$!y, $!x];
 	    $_ +^= @!state[( @!state[$!x] + @!state[$!y] ) % 256];
         }
-
-	Blob.new: @buf;
+        @buf;
     }
 
-    sub setup( Blob $key --> Array ) {
+    multi method RC4(Blob $message --> Blob) is default {
+	my uint8 @buf = $message.list;
+	Blob.new: self.RC4( @buf );
+    }
+
+   sub setup( $key --> Array ) {
 	my Int @state = 0..255;
 	my Int $y = 0;
 	for 0..255 -> $x {
@@ -45,8 +52,8 @@ class Crypt::RC4 {
 	@state;
     }
 
-    sub RC4(Blob $key, Blob $message --> Blob) is export(:DEFAULT) {
-	$?CLASS.new( :$key ).RC4( $message );
+    our sub RC4($key, |c) is export(:DEFAULT) {
+	$?CLASS.new( :$key ).RC4( |c );
     }
 }
 
@@ -65,7 +72,7 @@ Crypt::RC4 - Perl implementation of the RC4 encryption algorithm
   
 # OO Style
   use Crypt::RC4;
-  my $ref = Crypt::RC4.new( $passphrase );
+  my $ref = Crypt::RC4.new( :key($passphrase) );
   my $encrypted = $ref.RC4( $plaintext );
 
   my $ref2 = Crypt::RC4.new( $passphrase );
@@ -73,8 +80,8 @@ Crypt::RC4 - Perl implementation of the RC4 encryption algorithm
 
 # process an entire file, one line at a time
 # (Warning: Encrypted file leaks line lengths.)
-  my $ref3 = Crypt::RC4.new( $passphrase );
-  while for $fh.lines {
+  my $ref3 = Crypt::RC4.new( :key($passphrase) );
+  for $fh.lines {
       chomp;
       say $ref3.RC4($_);
   }
