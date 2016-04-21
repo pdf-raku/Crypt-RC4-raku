@@ -31,9 +31,11 @@ class Crypt::RC4:ver<0.0.2> {
     multi method RC4(@buf is copy --> Array) {
         for @buf {
 	    ++$!x;
-	    $!y += @!state[$!x];
-	    @!state[$!x, $!y] = @!state[$!y, $!x];
-	    my uint8 $mod-sum = @!state[$!x] + @!state[$!y];
+	    my $sx := @!state[$!x];
+	    $!y += $sx;
+	    my $sy := @!state[$!y];
+	    ($sx, $sy) = ($sy, $sx);
+	    my uint8 $mod-sum = $sx + $sy;
 	    $_ +^= @!state[$mod-sum];
         }
         @buf;
@@ -47,9 +49,9 @@ class Crypt::RC4:ver<0.0.2> {
    sub setup( $key --> array[uint8] ) {
 	my uint8 @state = 0..255;
 	my uint8 $y = 0;
-	for 0..255 -> $x {
+	for 0..255 -> uint8 $x {
 	    $y = ( $key[$x % +$key] + @state[$x] + $y );
-	    @state[$x, $y] = @state[$y, $x];
+	    (@state[$x], @state[$y]) = (@state[$y], @state[$x]);
 	}
 	@state;
     }
