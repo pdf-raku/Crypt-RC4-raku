@@ -5,7 +5,7 @@
     "auth"        : "github:p6-pdf",
     "description" : "Perl 6 implementation of the RC4 encryption algorithm",
     "depends"     : [ ],
-    "source-url"  : "git://github.com/p6-pdf/perl6-Crypt-RC4.git",
+    "source-url"  : "git://github.com/p6-pdf/Crypt-RC4-p6.git",
     "provides"    : {
         "Crypt::RC4" : "lib/Crypt/RC4.pm"
      }

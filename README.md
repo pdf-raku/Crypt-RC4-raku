@@ -1,5 +1,5 @@
-perl6-Crypt-RC4
-===============
+Crypt-RC4-p6
+============
 
 ## SYNOPSIS
 
