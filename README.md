@@ -11,16 +11,16 @@ perl6-Crypt-RC4
   
 # OO Style
   use Crypt::RC4;
-  my $ref = Crypt::RC4.new( $passphrase );
+  my Crypt::RC4 $ref = .new( $passphrase );
   my $encrypted = $ref.RC4( $plaintext );
 
-  $ref2 = Crypt::RC4.new( $passphrase );
+  my Crypt::RC4 $ref2 = Crypt::RC4.new( $passphrase );
   my $decrypted = $ref2.RC4( $encrypted );
 
 # process an entire file, one line at a time
 # (Warning: Encrypted file leaks line lengths.)
-  my $ref3 = Crypt::RC4.new( $passphrase );
-  while for $fh.lines {
+  my Crypt::RC4 $ref3 .= new( $passphrase );
+  for $fh.lines {
       chomp;
       say $ref3.RC4($_);
   }

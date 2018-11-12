@@ -18,14 +18,14 @@ class Crypt::RC4:ver<0.0.2> {
     has uint8 $!x;
     has uint8 $!y;
 
-    multi submethod BUILD(Blob :$key!) {
+    multi submethod TWEAK(Blob :$key!) {
         @!state = setup( $key );
         $!x = 0;
         $!y = 0;
     }
 
-    multi submethod BUILD(:$key!) is default {
-        self.BUILD( :key(Blob.new: $key) )
+    multi submethod TWEAK(:$key!) is default {
+        self.TWEAK( :key(Blob.new: $key) )
     }
 
     multi method RC4(@buf is copy --> Array) {
