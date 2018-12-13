@@ -8,7 +8,7 @@ Crypt-RC4-p6
   use Crypt::RC4;
   my $encrypted = RC4( $passphrase, $plaintext );
   my $decrypt = RC4( $passphrase, $encrypted );
-  
+
 # OO Style
   use Crypt::RC4;
   my Crypt::RC4 $ref = .new( $passphrase );
@@ -77,6 +77,5 @@ redistributed under the same terms as Perl itself.
 
 - http://www.cypherspace.org
 - http://www.rsasecurity.com
-- http://www.achtung.com/crypto/rc4.html 
+- http://www.achtung.com/crypto/rc4.html
 - http://www.columbia.edu/~ariel/ssleay/rrc4.html
-

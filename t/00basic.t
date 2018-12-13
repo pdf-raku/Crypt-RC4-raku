@@ -63,7 +63,7 @@ is-deeply $decrypted, $plaintext, 'decryption';
     my Blob $key = "It's just a passphrase".encode;
     my Str $encrypted = do {
         my Crypt::RC4 $k .= new(:$key);
-        my @pieces = split /<!ww>/, $message; 
+        my @pieces = split /<!ww>/, $message;
         join "", map { $k.RC4(.encode("latin-1")).decode("latin-1") }, @pieces;
     };
     my $failed;
