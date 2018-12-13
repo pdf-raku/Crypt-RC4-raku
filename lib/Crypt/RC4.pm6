@@ -12,7 +12,7 @@
 #       redistributed under the same terms as Perl itself.
 #--------------------------------------------------------------------#
 
-class Crypt::RC4:ver<0.0.2> {
+class Crypt::RC4:ver<0.0.4> {
 
     has uint8 @!state;
     has uint8 $!x;
