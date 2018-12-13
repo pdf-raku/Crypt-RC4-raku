@@ -1,7 +1,7 @@
 #--------------------------------------------------------------------#
 # Crypt::RC4
 #       Date Written:   07-Jun-2000 04:15:55 PM
-#       Last Modified:  13-Dec-2001 03:33:49 PM 
+#       Last Modified:  13-Dec-2001 03:33:49 PM
 #       Author:         Kurt Kincaid (sifukurt@yahoo.com)
 #       Copyright (c) 2001, Kurt Kincaid
 #           All Rights Reserved.
@@ -73,7 +73,7 @@ Crypt::RC4 - Perl implementation of the RC4 encryption algorithm
   use Crypt::RC4;
   my $encrypted = RC4( $passphrase, $plaintext );
   my $decrypt = RC4( $passphrase, $encrypted );
-  
+
 # OO Style
   use Crypt::RC4;
   my $ref = Crypt::RC4.new( :key($passphrase) );
@@ -138,8 +138,8 @@ redistributed under the same terms as Perl itself.
 
 =head1 SEE ALSO
 
-L<perl>, L<http://www.cypherspace.org>, L<http://www.rsasecurity.com>, 
-L<http://www.achtung.com/crypto/rc4.html>, 
+L<perl>, L<http://www.cypherspace.org>, L<http://www.rsasecurity.com>,
+L<http://www.achtung.com/crypto/rc4.html>,
 L<http://www.columbia.edu/~ariel/ssleay/rrc4.html>
 
 =cut
