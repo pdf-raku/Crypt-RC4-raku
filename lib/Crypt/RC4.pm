@@ -32,7 +32,7 @@ class Crypt::RC4:ver<0.0.2> {
         for @buf {
 	    my $sx := @!state[++$!x];
 	    $!y += $sx;
-	    my $sy := @!state[$!y];
+	    my $sy := $!y < 0 ?? @!state[*+$!y] !! @!state[$!y];
 	    ($sx, $sy) = ($sy, $sx);
 	    my uint8 $mod-sum = $sx + $sy;
 	    $_ +^= @!state[$mod-sum];
