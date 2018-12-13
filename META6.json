@@ -7,6 +7,6 @@
     "depends"     : [ ],
     "source-url"  : "git://github.com/p6-pdf/Crypt-RC4-p6.git",
     "provides"    : {
-        "Crypt::RC4" : "lib/Crypt/RC4.pm"
+        "Crypt::RC4" : "lib/Crypt/RC4.pm6"
      }
 }
