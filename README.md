@@ -46,7 +46,7 @@ A major bug in v1.0 was fixed by David Hook (dgh@wumpus.com.au).  Thanks, David.
 
 - Kurt Kincaid (sifukurt@yahoo.com)
 - Ronald Rivest for RSA Security, Inc.
-- Ported from Perl 5 to 6 by David Warring 2015.
+- Ported from Perl to Raku by David Warring 2015.
 
 ## BUGS
 
@@ -63,7 +63,7 @@ messages with the same passphrase may allow an attacker to decode all of
 them with little effort, even though they'll appear to be secured. If
 serious crypto is your goal, be careful. Be very careful.
 
-It's a pure-Perl implementation, so that rating of "Eight
+It's a pure-Raku implementation, so that rating of "Eight
 to sixteen machine operations" is good for nothing but a good laugh.
 If encryption and decryption are a bottleneck for you, please re-write
 this module to use native code wherever practical.
