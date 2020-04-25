@@ -1,4 +1,4 @@
-Crypt-RC4-p6
+Crypt-RC4-raku
 ============
 
 ## SYNOPSIS
@@ -28,7 +28,7 @@ Crypt-RC4-p6
 
 ## DESCRIPTION
 
-A simple implementation of the RC4 algorithm, developed by RSA Security, Inc. Here is the description
+A simple Raku implementation of the RC4 algorithm, developed by RSA Security, Inc. Here is the description
 from RSA's website:
 
 RC4 is a stream cipher designed by Rivest for RSA Data Security (now RSA Security). It is a variable

@@ -1,14 +1,14 @@
 {
-  "auth": "github:p6-pdf",
+  "auth": "github:pdf-raku",
   "depends": [
   ],
-  "description": "Perl 6 implementation of the RC4 encryption algorithm",
+  "description": "Raku implementation of the RC4 encryption algorithm",
   "license": "Artistic-2.0",
   "name": "Crypt::RC4",
   "perl": "6",
   "provides": {
     "Crypt::RC4": "lib/Crypt/RC4.rakumod"
   },
-  "source-url": "git://github.com/p6-pdf/Crypt-RC4-p6.git",
+  "source-url": "git://github.com/pdf-raku/Crypt-RC4-raku.git",
   "version": "0.0.4"
 }
