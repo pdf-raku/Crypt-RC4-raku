@@ -5,7 +5,7 @@
 #       Author:         Kurt Kincaid (sifukurt@yahoo.com)
 #       Copyright (c) 2001, Kurt Kincaid
 #           All Rights Reserved.
-#       Perl 6 Port:    08-Nov-2015 05:24:25 PM by
+#       Raku Port:      08-Nov-2015 05:24:25 PM by
 #                       david.warring@gmail.com
 #
 #       This is free software and may be modified and/or
@@ -19,7 +19,7 @@ class Crypt::RC4:ver<0.0.4> {
     has uint8 $!y;
 
     multi submethod TWEAK(Blob :$key!) {
-        @!state = setup( $key );
+        @!state := setup( $key );
         $!x = 0;
         $!y = 0;
     }
