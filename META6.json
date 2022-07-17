@@ -1,5 +1,5 @@
 {
-  "auth": "github:pdf-raku",
+  "auth": "zef:dwarring",
   "authors": [
     "David Warring"
   ],
@@ -7,7 +7,7 @@
   ],
   "depends": [
   ],
-  "description": "Perl implementation of the RC4 encryption algorithm",
+  "description": "Raku implementation of the RC4 encryption algorithm",
   "license": "Artistic-2.0",
   "name": "Crypt::RC4",
   "perl": "6",

@@ -12,60 +12,52 @@
 #       redistributed under the same terms as Perl itself.
 #--------------------------------------------------------------------#
 
-class Crypt::RC4:ver<0.0.4> {
+unit class Crypt::RC4:ver<0.0.4>;
 
-    has uint8 @!state;
-    has uint8 $!x;
-    has uint8 $!y;
+has uint8 @!state;
+has uint8 $!x = 0;
+has uint8 $!y = 0;
 
-    multi submethod TWEAK(Blob :$key!) {
-        @!state := setup( $key );
-        $!x = 0;
-        $!y = 0;
+submethod TWEAK(Blob() :$key!) {
+    @!state := setup( $key );
+}
+
+multi method RC4(@buf is copy --> Array) {
+    for @buf {
+        my $sx := @!state[++$!x];
+        $!y += $sx;
+        my $sy := $!y < 0 ?? @!state[*+$!y] !! @!state[$!y];
+        ($sx, $sy) = ($sy, $sx);
+        my uint8 $mod-sum = $sx + $sy;
+        $_ +^= @!state[$mod-sum];
     }
+    @buf;
+}
 
-    multi submethod TWEAK(:$key!) is default {
-        self.TWEAK( :key(Blob.new: $key) )
+multi method RC4(Blob $message --> Blob) {
+    my uint8 @buf = $message.list;
+    Blob.new: self.RC4( @buf );
+}
+
+sub setup( $key --> array[uint8] ) {
+    my uint8 @state = 0..255;
+    my uint8 $y = 0;
+    for 0..255 -> uint8 $x {
+        $y += $key[$x % +$key] + @state[$x];
+        (@state[$x], @state[$y]) = (@state[$y], @state[$x]);
     }
+    @state;
+}
 
-    multi method RC4(@buf is copy --> Array) {
-        for @buf {
-	    my $sx := @!state[++$!x];
-	    $!y += $sx;
-	    my $sy := $!y < 0 ?? @!state[*+$!y] !! @!state[$!y];
-	    ($sx, $sy) = ($sy, $sx);
-	    my uint8 $mod-sum = $sx + $sy;
-	    $_ +^= @!state[$mod-sum];
-        }
-        @buf;
-    }
-
-    multi method RC4(Blob $message --> Blob) is default {
-	my uint8 @buf = $message.list;
-	Blob.new: self.RC4( @buf );
-    }
-
-   sub setup( $key --> array[uint8] ) {
-	my uint8 @state = 0..255;
-	my uint8 $y = 0;
-	for 0..255 -> uint8 $x {
-	    $y += $key[$x % +$key] + @state[$x];
-	    (@state[$x], @state[$y]) = (@state[$y], @state[$x]);
-	}
-	@state;
-    }
-
-    our sub RC4($key, |c) is export(:DEFAULT) {
-	$?CLASS.new( :$key ).RC4( |c );
-    }
-
+our sub RC4($key, |c) is export(:DEFAULT) {
+    $?CLASS.new( :$key ).RC4( |c );
 }
 
 =begin pod
 
 =head1 NAME
 
-Crypt::RC4 - Perl implementation of the RC4 encryption algorithm
+Crypt::RC4 - Raku implementation of the RC4 encryption algorithm
 
 =head1 SYNOPSIS
 
