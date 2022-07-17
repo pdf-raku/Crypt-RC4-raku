@@ -10,7 +10,6 @@ on:
 
 jobs:
   raku:
-    needs: build-libraries
     strategy:
       matrix:
         os:
