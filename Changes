@@ -2,6 +2,10 @@ Revision history for Crypt-RC4
 
 {{$NEXT}}
 
+0.0.6  2024-09-19T07:55:19+12:00
+    - Note that RC4 is deprecated and not recommended for
+      new encryption #2.
+
 0.0.5  2022-07-18T05:57:21+12:00
     - Upload to zef
 

@@ -6,12 +6,20 @@ Crypt::RC4 - Raku implementation of the legacy RC4 encryption algorithm
 SYNOPSIS
 ========
 
-# Functional Style use Crypt::RC4; my $encrypted = RC4( $passphrase, $plaintext ); my $decrypt = RC4( $passphrase, $encrypted );
+```raku
+# Functional Style
+  use Crypt::RC4;
+  my $encrypted = RC4( $passphrase, $plaintext );
+  my $decrypt = RC4( $passphrase, $encrypted );
 
-# OO Style use Crypt::RC4; my Crypt::RC4 $ref .= new: :key($passphrase); my $encrypted = $ref.RC4( $plaintext );
+# OO Style
+  use Crypt::RC4;
+  my Crypt::RC4 $ref .= new: :key($passphrase);
+  my $encrypted = $ref.RC4( $plaintext );
 
-    my Crypt::RC4 $ref2 .= new: :key($passphrase);
-    my $decrypted = $ref2.RC4( $encrypted );
+  my Crypt::RC4 $ref2 .= new: :key($passphrase);
+  my $decrypted = $ref2.RC4( $encrypted );
+```
 
 DESCRIPTION
 ===========

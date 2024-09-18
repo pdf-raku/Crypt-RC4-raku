@@ -12,7 +12,7 @@
 #       redistributed under the same terms as Perl itself.
 #--------------------------------------------------------------------#
 
-unit class Crypt::RC4:ver<0.0.5>;
+unit class Crypt::RC4:ver<0.0.6>;
 
 has uint8 @!state;
 has uint8 $!x = 0;
@@ -61,6 +61,7 @@ Crypt::RC4 - Raku implementation of the legacy RC4 encryption algorithm
 
 =head1 SYNOPSIS
 
+=begin code :lang<raku>
 # Functional Style
   use Crypt::RC4;
   my $encrypted = RC4( $passphrase, $plaintext );
@@ -73,6 +74,7 @@ Crypt::RC4 - Raku implementation of the legacy RC4 encryption algorithm
 
   my Crypt::RC4 $ref2 .= new: :key($passphrase);
   my $decrypted = $ref2.RC4( $encrypted );
+=end code
 
 =head1 DESCRIPTION
 
