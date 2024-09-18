@@ -7,7 +7,7 @@
   ],
   "depends": [
   ],
-  "description": "Raku implementation of the RC4 encryption algorithm",
+  "description": "Raku implementation of the legacy RC4 encryption algorithm",
   "license": "Artistic-2.0",
   "name": "Crypt::RC4",
   "perl": "6",
@@ -16,7 +16,7 @@
   },
   "resources": [
   ],
-  "source-url": "git://github.com/pdf-raku/Crypt-RC4-raku.git",
+  "source-url": "https://github.com/pdf-raku/Crypt-RC4-raku.git",
   "tags": [
   ],
   "test-depends": [

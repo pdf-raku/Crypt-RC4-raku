@@ -57,7 +57,7 @@ our sub RC4($key, |c) is export(:DEFAULT) {
 
 =head1 NAME
 
-Crypt::RC4 - Raku implementation of the RC4 encryption algorithm
+Crypt::RC4 - Raku implementation of the legacy RC4 encryption algorithm
 
 =head1 SYNOPSIS
 
@@ -68,35 +68,18 @@ Crypt::RC4 - Raku implementation of the RC4 encryption algorithm
 
 # OO Style
   use Crypt::RC4;
-  my $ref = Crypt::RC4.new( :key($passphrase) );
+  my Crypt::RC4 $ref .= new: :key($passphrase);
   my $encrypted = $ref.RC4( $plaintext );
 
-  my $ref2 = Crypt::RC4.new( $passphrase );
+  my Crypt::RC4 $ref2 .= new: :key($passphrase);
   my $decrypted = $ref2.RC4( $encrypted );
-
-# process an entire file, one line at a time
-# (Warning: Encrypted file leaks line lengths.)
-  my $ref3 = Crypt::RC4.new( :key($passphrase) );
-  for $fh.lines {
-      chomp;
-      say $ref3.RC4($_);
-  }
 
 =head1 DESCRIPTION
 
-A simple implementation of the RC4 algorithm, developed by RSA Security, Inc. Here is the description
-from RSA's website:
+A simple implementation of the RC4 algorithm, developed by RSA Security, Inc.
 
-RC4 is a stream cipher designed by Rivest for RSA Data Security (now RSA Security). It is a variable
-key-size stream cipher with byte-oriented operations. The algorithm is based on the use of a random
-permutation. Analysis shows that the period of the cipher is overwhelmingly likely to be greater than
-10100. Eight to sixteen machine operations are required per output byte, and the cipher can be
-expected to run very quickly in software. Independent analysts have scrutinized the algorithm and it
-is considered secure.
-
-Based substantially on the "RC4 in 3 lines of perl" found at http://www.cypherspace.org
-
-A major bug in v1.0 was fixed by David Hook (dgh@wumpus.com.au).  Thanks, David.
+RC4 is no longer recommended for encryption. This module is provided for demonstration
+purposes and backwards compatibility only.                                                                         
 
 =head1 AUTHOR
 
@@ -105,23 +88,9 @@ Ronald Rivest for RSA Security, Inc.
 
 =head1 BUGS
 
-Disclaimer: Strictly speaking, this module uses the "alleged" RC4
-algorithm. The Algorithm known as "RC4" is a trademark of RSA Security
-Inc., and this document makes no claims one way or another that this
-is the correct algorithm, and further, make no claims about the
-quality of the source code nor any licensing requirements for
-commercial use.
+The RC4 algorithm is considered weak and insecure for modern cryptographic applications. It is susceptible to significant vulnerabilities, making it unsuitable for ensuring data confidentiality. Several attacks, such as the Fluhrer-Mantin-Shamir attack and biases in the keystream, have been discovered over the years. Due to these vulnerabilities, the RC4 algorithm is no longer considered secure.
 
-There's nothing preventing you from using this module in an insecure
-way which leaks information. For example, encrypting multiple
-messages with the same passphrase may allow an attacker to decode all of
-them with little effort, even though they'll appear to be secured. If
-serious crypto is your goal, be careful. Be very careful.
-
-It's a pure-Perl implementation, so that rating of "Eight
-to sixteen machine operations" is good for nothing but a good laugh.
-If encryption and decryption are a bottleneck for you, please re-write
-this module to use native code wherever practical.
+Furthermore, this implementation is limited to 256 bit encryption keys.
 
 =head1 LICENSE
 

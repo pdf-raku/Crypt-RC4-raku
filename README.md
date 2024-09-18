@@ -1,81 +1,49 @@
-Crypt-RC4-raku
-============
+NAME
+====
 
-## SYNOPSIS
+Crypt::RC4 - Raku implementation of the legacy RC4 encryption algorithm
 
-```
-# Functional Style
-  use Crypt::RC4;
-  my $encrypted = RC4( $passphrase, $plaintext );
-  my $decrypt = RC4( $passphrase, $encrypted );
+SYNOPSIS
+========
 
-# OO Style
-  use Crypt::RC4;
-  my Crypt::RC4 $ref = .new( $passphrase );
-  my $encrypted = $ref.RC4( $plaintext );
+# Functional Style use Crypt::RC4; my $encrypted = RC4( $passphrase, $plaintext ); my $decrypt = RC4( $passphrase, $encrypted );
 
-  my Crypt::RC4 $ref2 = Crypt::RC4.new( $passphrase );
-  my $decrypted = $ref2.RC4( $encrypted );
+# OO Style use Crypt::RC4; my Crypt::RC4 $ref .= new: :key($passphrase); my $encrypted = $ref.RC4( $plaintext );
 
-# process an entire file, one line at a time
-# (Warning: Encrypted file leaks line lengths.)
-  my Crypt::RC4 $ref3 .= new( $passphrase );
-  for $fh.lines {
-      chomp;
-      say $ref3.RC4($_);
-  }
-```
+    my Crypt::RC4 $ref2 .= new: :key($passphrase);
+    my $decrypted = $ref2.RC4( $encrypted );
 
-## DESCRIPTION
+DESCRIPTION
+===========
 
-A simple Raku implementation of the RC4 algorithm, developed by RSA Security, Inc. Here is the description
-from RSA's website:
+A simple implementation of the RC4 algorithm, developed by RSA Security, Inc.
 
-RC4 is a stream cipher designed by Rivest for RSA Data Security (now RSA Security). It is a variable
-key-size stream cipher with byte-oriented operations. The algorithm is based on the use of a random
-permutation. Analysis shows that the period of the cipher is overwhelmingly likely to be greater than
-10100. Eight to sixteen machine operations are required per output byte, and the cipher can be
-expected to run very quickly in software. Independent analysts have scrutinized the algorithm and it
-is considered secure.
+RC4 is no longer recommended for encryption. This module is provided for demonstration purposes and backwards compatibility only. 
 
-Based substantially on the "RC4 in 3 lines of perl" found at http://www.cypherspace.org
+AUTHOR
+======
 
-A major bug in v1.0 was fixed by David Hook (dgh@wumpus.com.au).  Thanks, David.
+Kurt Kincaid (sifukurt@yahoo.com) Ronald Rivest for RSA Security, Inc.
 
-## AUTHOR
+BUGS
+====
 
-- Kurt Kincaid (sifukurt@yahoo.com)
-- Ronald Rivest for RSA Security, Inc.
-- Ported from Perl to Raku by David Warring 2015.
+The RC4 algorithm is considered weak and insecure for modern cryptographic applications. It is susceptible to significant vulnerabilities, making it unsuitable for ensuring data confidentiality. Several attacks, such as the Fluhrer-Mantin-Shamir attack and biases in the keystream, have been discovered over the years. Due to these vulnerabilities, the RC4 algorithm is no longer considered secure.
 
-## BUGS
+Furthermore, this implementation is limited to 256 bit encryption keys.
 
-Disclaimer: Strictly speaking, this module uses the "alleged" RC4
-algorithm. The Algorithm known as "RC4" is a trademark of RSA Security
-Inc., and this document makes no claims one way or another that this
-is the correct algorithm, and further, make no claims about the
-quality of the source code nor any licensing requirements for
-commercial use.
+LICENSE
+=======
 
-There's nothing preventing you from using this module in an insecure
-way which leaks information. For example, encrypting multiple
-messages with the same passphrase may allow an attacker to decode all of
-them with little effort, even though they'll appear to be secured. If
-serious crypto is your goal, be careful. Be very careful.
+This is free software and may be modified and/or redistributed under the same terms as Perl itself.
 
-It's a pure-Raku implementation, so that rating of "Eight
-to sixteen machine operations" is good for nothing but a good laugh.
-If encryption and decryption are a bottleneck for you, please re-write
-this module to use native code wherever practical.
+SEE ALSO
+========
 
-## LICENSE
+[perl](perl), [http://www.cypherspace.org](http://www.cypherspace.org), [http://www.rsasecurity.com](http://www.rsasecurity.com), [http://www.achtung.com/crypto/rc4.html](http://www.achtung.com/crypto/rc4.html), [http://www.columbia.edu/~ariel/ssleay/rrc4.html](http://www.columbia.edu/~ariel/ssleay/rrc4.html)
 
-This is free software and may be modified and/or
-redistributed under the same terms as Perl itself.
+cut
+===
 
-## SEE ALSO
 
-- http://www.cypherspace.org
-- http://www.rsasecurity.com
-- http://www.achtung.com/crypto/rc4.html
-- http://www.columbia.edu/~ariel/ssleay/rrc4.html
+
