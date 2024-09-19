@@ -88,6 +88,9 @@ purposes and backwards compatibility only.
 Kurt Kincaid (sifukurt@yahoo.com)
 Ronald Rivest for RSA Security, Inc.
 
+David Warring (david.warring@gmail.com)
+Perl to Raku port.
+
 =head1 BUGS
 
 The RC4 algorithm is considered weak and insecure for modern cryptographic applications. It is susceptible to significant vulnerabilities, making it unsuitable for ensuring data confidentiality. Several attacks, such as the Fluhrer-Mantin-Shamir attack and biases in the keystream, have been discovered over the years. Due to these vulnerabilities, the RC4 algorithm is no longer considered secure.
